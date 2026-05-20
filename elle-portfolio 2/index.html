@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elle Rabley — Researcher. Builder. Strategist.</title>
+  <meta name="description" content="Elle Rabley — McGill University. Psychology, Entrepreneurship, Philosophy. Researcher, builder, and aspiring strategist." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Elle Rabley — Researcher. Builder. Strategist." />
+  <meta property="og:description" content="McGill University student with credentials spanning neuroscience research, Stanford-affiliated work, and active product development." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://toasted-sea-salt.github.io/elle_rabley_porfolio/" />
+  <meta property="og:image"       content="assets/og-image.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* ── HOME-SPECIFIC ── */
+    body { overflow-x: hidden; }
+
+    /* Hero */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grain texture overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Decorative vertical rule */
+    .hero-rule {
+      position: absolute;
+      top: 0; bottom: 0;
+      right: clamp(200px, 30vw, 520px);
+      width: 1px;
+      background: var(--border);
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: clamp(48px, 8vw, 96px) 0 clamp(64px, 10vw, 120px);
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow .label { color: var(--text-light); }
+    .hero-eyebrow-line {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      font-family: var(--serif);
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-positioning {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.375rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      margin-bottom: 48px;
+      max-width: 480px;
+    }
+    .hero-positioning span {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero meta strip */
+    .hero-meta {
+      position: absolute;
+      bottom: clamp(24px, 4vw, 48px);
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: calc(var(--max-w) - var(--gutter) * 2);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-meta-item .label { color: var(--text-light); font-size: 0.65rem; }
+    .hero-meta-item span:last-child {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .scroll-hint-arrow {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--border-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* Credentials ticker strip */
+    .ticker-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 40px;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    .ticker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Feature grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .feature-cell {
+      background: var(--bg);
+      padding: clamp(28px, 4vw, 48px);
+      transition: background 0.2s var(--ease);
+    }
+    .feature-cell:hover { background: var(--bg-card); }
+    .feature-cell a { display: block; }
+    .feature-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+    .feature-cell h3 { font-size: 1.125rem; margin-bottom: 10px; }
+    .feature-cell p { font-size: 0.875rem; line-height: 1.6; margin-bottom: 20px; }
+    .feature-arrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .feature-cell:hover .feature-arrow { gap: 10px; }
+
+    /* Profile strip */
+    .profile-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .profile-left {
+      background: var(--text);
+      color: var(--bg);
+      padding: clamp(40px, 5vw, 64px);
+    }
+    .profile-left h2 { color: var(--bg); margin-bottom: 20px; }
+    .profile-left p { color: rgba(249,247,244,0.65); margin-bottom: 32px; }
+    .profile-right {
+      background: var(--bg-card);
+      padding: clamp(40px, 5vw, 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      min-width: 56px;
+      line-height: 1;
+    }
+    .stat-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .stat-desc strong {
+      display: block;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .feature-grid .feature-cell:last-child { grid-column: 1 / -1; }
+      .profile-strip { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ NAV ════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">ER.</a>
+      <div class="nav-links">
+        <a href="index.html"              class="nav-link">Home</a>
+        <a href="about/index.html"        class="nav-link">About</a>
+        <a href="experience/index.html"   class="nav-link">Experience</a>
+        <a href="involvement/index.html"  class="nav-link">Involvement</a>
+        <a href="projects/index.html"     class="nav-link">Projects</a>
+        <a href="contact/index.html"      class="nav-link btn btn-outline" style="padding:8px 20px;">Connect</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="index.html"              class="nav-mobile-link">Home</a>
+    <a href="about/index.html"        class="nav-mobile-link">About</a>
+    <a href="experience/index.html"   class="nav-mobile-link">Experience</a>
+    <a href="involvement/index.html"  class="nav-mobile-link">Involvement</a>
+    <a href="projects/index.html"     class="nav-mobile-link">Projects</a>
+    <a href="contact/index.html"      class="nav-mobile-link">Connect</a>
+  </div>
+
+  <main>
+
+    <!-- ════ HERO ════ -->
+    <section class="hero">
+      <div class="hero-rule" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="hero-eyebrow animate-fade-up">
+            <span class="hero-eyebrow-line"></span>
+            <span class="label">McGill University · Class of 2026</span>
+          </div>
+
+          <h1 class="hero-name animate-fade-up delay-1">
+            Elle<br><em>Rabley.</em>
+          </h1>
+
+          <p class="hero-positioning animate-fade-up delay-2">
+            <span>Researcher.</span> Builder. Strategist.<br>
+            Psychology &amp; Entrepreneurship — Montreal &amp; Houston.
+          </p>
+
+          <div class="hero-actions animate-fade-up delay-3">
+            <a href="experience/index.html" class="btn btn-primary">View My Work</a>
+            <a href="contact/index.html"    class="btn btn-outline">Let's Connect</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom meta strip -->
+      <div class="hero-meta animate-fade-in delay-5">
+        <div class="hero-meta-item">
+          <span class="label">Currently</span>
+          <span>McGill University, Montréal</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item">
+          <span class="label">Research</span>
+          <span>MOGILab — Pain Neuroscience</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item">
+          <span class="label">Building</span>
+          <span>Campus Commons (MVP 2025)</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="scroll-hint">
+          <div class="scroll-hint-arrow">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+              <path d="M4 1v6M1 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span>Scroll</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ TICKER ════ -->
+    <div class="ticker-strip">
+      <div class="ticker-track">
+        <!-- First set -->
+        <div class="ticker-item"><span class="ticker-dot"></span>McGill University</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Stanford University OHS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>MOGILab Research</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Johns Hopkins CTY</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>SPARK Lab Stanford</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Stanford Medicine</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Campus Commons</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Alpha Phi Executive Board</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>McGill Pre-Law Society</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>CaPS Advisory Board</div>
+        <!-- Second set (duplicate for seamless loop) -->
+        <div class="ticker-item"><span class="ticker-dot"></span>McGill University</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Stanford University OHS</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>MOGILab Research</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Johns Hopkins CTY</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>SPARK Lab Stanford</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Stanford Medicine</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Campus Commons</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>Alpha Phi Executive Board</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>McGill Pre-Law Society</div>
+        <div class="ticker-item"><span class="ticker-dot"></span>CaPS Advisory Board</div>
+      </div>
+    </div>
+
+    <!-- ════ FEATURE GRID ════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">What I Do</span>
+          <h2>Three tracks,<br>one direction.</h2>
+        </div>
+
+        <div class="feature-grid reveal reveal-delay-1">
+          <div class="feature-cell">
+            <a href="experience/index.html">
+              <div class="feature-num">05</div>
+              <h3>Research &amp; Clinical Work</h3>
+              <p>Neuroscience, clinical research, and behavioral science — from pain mechanisms at McGill to cardiovascular surgery at Stanford.</p>
+              <span class="feature-arrow">Explore →</span>
+            </a>
+          </div>
+          <div class="feature-cell">
+            <a href="projects/index.html">
+              <div class="feature-num">03</div>
+              <h3>Products &amp; Builds</h3>
+              <p>Campus Commons, a peer-to-peer university marketplace. Two live game projects. All built from scratch.</p>
+              <span class="feature-arrow">See Projects →</span>
+            </a>
+          </div>
+          <div class="feature-cell">
+            <a href="involvement/index.html">
+              <div class="feature-num">07</div>
+              <h3>Leadership &amp; Organizations</h3>
+              <p>Executive board positions across law, consulting, Greek life, and student services — building at scale.</p>
+              <span class="feature-arrow">View Roles →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ PROFILE STRIP ════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="profile-strip reveal">
+          <div class="profile-left">
+            <span class="label" style="color:rgba(249,247,244,0.4); margin-bottom:16px; display:block;">The Short Version</span>
+            <h2>Rigorous by training.<br>Builder by instinct.</h2>
+            <p>I study how people think — and then build things for them. My academic work spans cognitive neuroscience, behavioral science, and philosophy. My extracurricular work spans startups, law, and leadership at institutional scale.</p>
+            <a href="about/index.html" class="btn btn-outline" style="border-color:rgba(249,247,244,0.3); color:var(--bg);">Read My Story →</a>
+          </div>
+          <div class="profile-right">
+            <div class="stat-list">
+              <div class="stat-item">
+                <span class="stat-num">5</span>
+                <div class="stat-desc">
+                  <strong>Research &amp; Professional Roles</strong>
+                  McGill, Stanford, Johns Hopkins, Motherhood Center
+                </div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">7+</span>
+                <div class="stat-desc">
+                  <strong>Campus Leadership Positions</strong>
+                  Executive board across 3 organizations
+                </div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">300+</span>
+                <div class="stat-desc">
+                  <strong>Students Served at Hopkins CTY</strong>
+                  Large-scale residential programming
+                </div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">2026</span>
+                <div class="stat-desc">
+                  <strong>Expected Graduation</strong>
+                  B.A. Psychology · Entrepreneurship &amp; Philosophy
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ CONNECT CTA ════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div style="text-align:center; padding: clamp(48px,7vw,80px) 0; border-top: 1px solid var(--border);">
+          <span class="label reveal" style="display:block; margin-bottom:16px;">Open to Opportunities</span>
+          <h2 class="reveal reveal-delay-1" style="margin-bottom:20px; max-width:520px; margin-left:auto; margin-right:auto;">Research, consulting,<br>and builder collaborations.</h2>
+          <p class="reveal reveal-delay-2" style="margin-bottom:36px; max-width:400px; margin-left:auto; margin-right:auto;">Currently based in Montréal. Available for conversations about research positions, consulting pipelines, and product partnerships.</p>
+          <div class="reveal reveal-delay-3" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="contact/index.html" class="btn btn-primary">Say Hello</a>
+            <a href="mailto:elle.elisha.rabley@gmail.com" class="btn btn-outline">elle.elisha.rabley@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Elle Rabley. Built with intent.</span>
+        <div class="footer-links">
+          <a href="mailto:elle.elisha.rabley@gmail.com" class="footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/elisha-elle-rabley-b92aa0346" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="projects/index.html" class="footer-link">Projects</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

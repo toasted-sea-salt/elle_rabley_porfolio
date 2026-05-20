@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience — Elle Rabley</title>
+  <meta name="description" content="Research and professional experience — MOGILab McGill, Johns Hopkins CTY, SPARK Lab Stanford, Stanford Medicine." />
+  <meta property="og:title"       content="Experience — Elle Rabley" />
+  <meta property="og:description" content="Neuroscience research, clinical work, and residential mentorship spanning McGill, Stanford, and Johns Hopkins." />
+  <meta property="og:type"        content="website" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    /* ── EXPERIENCE-SPECIFIC ── */
+
+    .timeline {
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .exp-card {
+      position: relative;
+      padding: clamp(32px, 5vw, 56px) clamp(32px, 5vw, 56px) clamp(32px, 5vw, 56px) clamp(40px, 6vw, 72px);
+      border-left: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      transition: background 0.25s var(--ease);
+    }
+    .exp-card:last-child { border-bottom: none; }
+    .exp-card:hover { background: var(--bg-card); }
+
+    /* Timeline dot */
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: clamp(32px, 5vw, 56px);
+      left: -5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border-dark);
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .exp-card:hover::before {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .exp-meta {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .exp-year {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .exp-location {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+
+    .exp-role {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .exp-org {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exp-org a {
+      transition: opacity 0.2s;
+    }
+    .exp-org a:hover { opacity: 0.7; }
+    .exp-org-dot {
+      width: 3px; height: 3px;
+      background: var(--text-light);
+      border-radius: 50%;
+    }
+
+    .exp-summary {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .exp-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .exp-bullet {
+      display: flex;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .exp-bullet::before {
+      content: '—';
+      color: var(--accent);
+      font-weight: 400;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .exp-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .exp-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-light);
+      background: var(--bg);
+    }
+
+    /* Resume CTA */
+    .resume-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: var(--radius-md);
+      padding: clamp(28px, 4vw, 40px) clamp(28px, 4vw, 48px);
+      flex-wrap: wrap;
+    }
+    .resume-cta h3 { color: var(--bg); font-size: 1.375rem; }
+    .resume-cta p { color: rgba(249,247,244,0.55); font-size: 0.875rem; margin-top: 6px; }
+    .btn-resume {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-resume:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ NAV ════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">ER.</a>
+      <div class="nav-links">
+        <a href="../index.html"              class="nav-link">Home</a>
+        <a href="../about/index.html"        class="nav-link">About</a>
+        <a href="../experience/index.html"   class="nav-link">Experience</a>
+        <a href="../involvement/index.html"  class="nav-link">Involvement</a>
+        <a href="../projects/index.html"     class="nav-link">Projects</a>
+        <a href="../contact/index.html"      class="nav-link btn btn-outline" style="padding:8px 20px;">Connect</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../index.html"             class="nav-mobile-link">Home</a>
+    <a href="../about/index.html"       class="nav-mobile-link">About</a>
+    <a href="../experience/index.html"  class="nav-mobile-link">Experience</a>
+    <a href="../involvement/index.html" class="nav-mobile-link">Involvement</a>
+    <a href="../projects/index.html"    class="nav-mobile-link">Projects</a>
+    <a href="../contact/index.html"     class="nav-mobile-link">Connect</a>
+  </div>
+
+  <main>
+
+    <!-- ════ PAGE HEADER ════ -->
+    <div class="container">
+      <div class="page-header reveal">
+        <span class="label">Research &amp; Professional</span>
+        <h1>Experience<br><em class="italic text-accent">that counts.</em></h1>
+        <p class="subtitle">From pain neuroscience at McGill to cardiovascular surgery at Stanford — research, clinical, and educational roles that shaped how I think.</p>
+      </div>
+    </div>
+
+    <!-- ════ TIMELINE ════ -->
+    <section class="section">
+      <div class="container">
+
+        <div class="timeline">
+
+          <!-- Role 1: MOGILab -->
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <span class="exp-year">2025</span>
+              <span class="exp-location">Montréal, QC</span>
+            </div>
+            <div class="exp-role">Research Assistant</div>
+            <div class="exp-org">
+              <a href="https://mogilab.ca/" target="_blank" rel="noopener">MOGILab, McGill University</a>
+              <span class="exp-org-dot"></span>
+              <span style="color:var(--text-light); font-weight:400;">Neuroscience</span>
+            </div>
+            <p class="exp-summary">Contributing to active research on pain perception, social modulation, and the environmental factors that influence how humans and animals experience pain — under PI Jeffrey Mogil, one of the world's leading pain researchers.</p>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Conducted neuroscience research on pain mechanisms, executing data cleaning and statistical analysis pipelines across behavioral and physiological datasets.</div>
+              <div class="exp-bullet">Synthesized findings and contributed to literature reviews supporting ongoing peer-reviewed publications in pain neuroscience.</div>
+              <div class="exp-bullet">Collaborated with lab members on understanding how social and environmental context modulates pain perception across populations.</div>
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Neuroscience</span>
+              <span class="exp-tag">Pain Research</span>
+              <span class="exp-tag">Statistical Analysis</span>
+              <span class="exp-tag">Literature Review</span>
+            </div>
+          </div>
+
+          <!-- Role 2: Hopkins CTY -->
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <span class="exp-year">Summer 2025</span>
+              <span class="exp-location">Baltimore, MD</span>
+            </div>
+            <div class="exp-role">Residential Assistant</div>
+            <div class="exp-org">
+              <a href="https://cty.jhu.edu/" target="_blank" rel="noopener">Johns Hopkins Center for Talented Youth (CTY)</a>
+              <span class="exp-org-dot"></span>
+              <span style="color:var(--text-light); font-weight:400;">Education</span>
+            </div>
+            <p class="exp-summary">Mentored and supervised a cohort of high-achieving students at one of the nation's most prestigious summer academic programs for gifted youth — responsible for residential culture, student wellbeing, and community programming at scale.</p>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Led conflict resolution, team-building, and community programming for 300+ residential students, maintaining a safe and inclusive living environment across multiple dormitories.</div>
+              <div class="exp-bullet">Coordinated directly with academic staff and program leadership to provide wraparound support for students with diverse backgrounds and needs.</div>
+              <div class="exp-bullet">Designed and facilitated structured social activities that fostered belonging and engagement for gifted students from across the country and internationally.</div>
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Student Development</span>
+              <span class="exp-tag">Large-Scale Programming</span>
+              <span class="exp-tag">Conflict Resolution</span>
+              <span class="exp-tag">Community Building</span>
+            </div>
+          </div>
+
+          <!-- Role 3: SPARK Lab -->
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <span class="exp-year">2023</span>
+              <span class="exp-location">Stanford, CA</span>
+            </div>
+            <div class="exp-role">Research Assistant</div>
+            <div class="exp-org">
+              <a href="https://sparklab.stanford.edu/" target="_blank" rel="noopener">SPARK Lab, Stanford University</a>
+              <span class="exp-org-dot"></span>
+              <span style="color:var(--text-light); font-weight:400;">Developmental Psychology</span>
+            </div>
+            <p class="exp-summary">Supported research on parenting styles and executive functioning in children and adolescents (ages 5–16) — contributing to participant recruitment, data analysis, and formal documentation.</p>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Recruited and engaged participants, achieving a 95% survey completion rate through consistent, age-appropriate communication and follow-up.</div>
+              <div class="exp-bullet">Performed preliminary statistical analysis informing cross-study comparisons; contributed to formal documentation and reporting pipelines.</div>
+              <div class="exp-bullet">Conducted qualitative coding of parent-child interaction data for published and in-progress research on executive function development.</div>
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Developmental Psychology</span>
+              <span class="exp-tag">Qualitative Coding</span>
+              <span class="exp-tag">IRB Compliance</span>
+              <span class="exp-tag">Participant Recruitment</span>
+            </div>
+          </div>
+
+          <!-- Role 4: Stanford Medicine -->
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <span class="exp-year">2022</span>
+              <span class="exp-location">Stanford, CA</span>
+            </div>
+            <div class="exp-role">Cardiothoracic Surgical Skills Intern</div>
+            <div class="exp-org">
+              <a href="https://med.stanford.edu/cssec/about-our-internship.html" target="_blank" rel="noopener">Stanford School of Medicine — CSSEC</a>
+              <span class="exp-org-dot"></span>
+              <span style="color:var(--text-light); font-weight:400;">Clinical / Medical</span>
+            </div>
+            <p class="exp-summary">Gained direct clinical exposure within one of the world's leading cardiovascular surgery programs — observing complex procedures, engaging with the surgical team, and contributing to case study documentation.</p>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Observed open-heart surgeries and complex cardiovascular procedures performed by attending surgeons, building foundational clinical literacy and surgical awareness.</div>
+              <div class="exp-bullet">Assisted with patient preparation protocols and actively participated in grand rounds discussions alongside residents, fellows, and attending physicians.</div>
+              <div class="exp-bullet">Compiled and presented case study analyses for the surgical team, developing skills in clinical documentation and evidence-based medical reasoning.</div>
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Clinical Research</span>
+              <span class="exp-tag">Cardiovascular Surgery</span>
+              <span class="exp-tag">Case Studies</span>
+              <span class="exp-tag">Grand Rounds</span>
+            </div>
+          </div>
+
+          <!-- Role 5: Motherhood Center -->
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <span class="exp-year">Summer 2024</span>
+              <span class="exp-location">Houston, TX</span>
+            </div>
+            <div class="exp-role">Front Office &amp; Program Coordinator</div>
+            <div class="exp-org">
+              <span>Motherhood Center</span>
+              <span class="exp-org-dot"></span>
+              <span style="color:var(--text-light); font-weight:400;">Healthcare &amp; Programming</span>
+            </div>
+            <p class="exp-summary">Coordinated front office operations and programming logistics for a Houston-based maternal wellness center — managing staff scheduling, internal communications, and prenatal workshop support in a fast-paced service environment.</p>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Managed scheduling and workflow coordination for 20+ staff members; produced internal communications and logistical documents under time pressure across high-volume service days.</div>
+              <div class="exp-bullet">Supported programming logistics for prenatal workshops, remaining calm and solution-oriented across demanding client-facing service days.</div>
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Operations</span>
+              <span class="exp-tag">Program Coordination</span>
+              <span class="exp-tag">Internal Communications</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ RESUME CTA ════ -->
+    <section style="padding: 0 0 var(--section-py);">
+      <div class="container">
+        <div class="resume-cta reveal">
+          <div>
+            <h3 class="serif">Want the full picture?</h3>
+            <p>Download my resume — updated for consulting and research recruitment tracks.</p>
+          </div>
+          <a href="../assets/elle-rabley-resume.pdf" download class="btn btn-resume">
+            Download Resume
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v9M3.5 7l3.5 3 3.5-3M2 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Elle Rabley. Built with intent.</span>
+        <div class="footer-links">
+          <a href="mailto:elle.elisha.rabley@gmail.com" class="footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/elisha-elle-rabley-b92aa0346" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../projects/index.html" class="footer-link">Projects</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

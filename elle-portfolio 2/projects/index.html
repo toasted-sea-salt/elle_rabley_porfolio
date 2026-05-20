@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Elle Rabley</title>
+  <meta name="description" content="Projects — Campus Commons, LetterLoft, CardLanes. Building real products from the ground up." />
+  <meta property="og:title"       content="Projects — Elle Rabley" />
+  <meta property="og:description" content="Campus Commons peer-to-peer marketplace, LetterLoft, and CardLanes — products built from scratch." />
+  <meta property="og:type"        content="website" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    /* ── PROJECTS-SPECIFIC ── */
+
+    /* Featured project */
+    .featured-project {
+      background: var(--text);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fp-left {
+      padding: clamp(40px, 5vw, 64px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fp-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .fp-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .fp-status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--bg);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .fp-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      color: var(--bg);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .fp-tagline {
+      font-size: 1rem;
+      color: rgba(249,247,244,0.6);
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    .fp-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex: 1;
+    }
+    .fp-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: rgba(249,247,244,0.7);
+    }
+    .fp-feature-icon {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      background: rgba(249,247,244,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .fp-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .fp-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(249,247,244,0.15);
+      border-radius: 100px;
+      color: rgba(249,247,244,0.5);
+    }
+
+    .fp-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .fp-btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .fp-btn-primary:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+    }
+    .fp-btn-outline {
+      background: transparent;
+      color: rgba(249,247,244,0.7);
+      border-color: rgba(249,247,244,0.2);
+    }
+    .fp-btn-outline:hover {
+      border-color: rgba(249,247,244,0.5);
+      color: var(--bg);
+    }
+
+    .fp-right {
+      background: rgba(255,255,255,0.03);
+      border-left: 1px solid rgba(255,255,255,0.06);
+      padding: clamp(40px, 5vw, 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .fp-detail-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249,247,244,0.3);
+      margin-bottom: 8px;
+    }
+    .fp-detail-value {
+      font-size: 0.875rem;
+      color: rgba(249,247,244,0.65);
+      line-height: 1.5;
+    }
+    .fp-detail-block {
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .fp-detail-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Other projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+    .project-card:hover {
+      border-color: var(--border-dark);
+      transform: translateY(-3px);
+    }
+
+    .proj-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    .proj-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .proj-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .proj-tech {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-light);
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.775rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: auto;
+      transition: gap 0.2s;
+    }
+    .proj-link:hover { gap: 12px; }
+
+    @media (max-width: 900px) {
+      .featured-project { grid-template-columns: 1fr; }
+      .fp-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+    }
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ NAV ════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">ER.</a>
+      <div class="nav-links">
+        <a href="../index.html"              class="nav-link">Home</a>
+        <a href="../about/index.html"        class="nav-link">About</a>
+        <a href="../experience/index.html"   class="nav-link">Experience</a>
+        <a href="../involvement/index.html"  class="nav-link">Involvement</a>
+        <a href="../projects/index.html"     class="nav-link">Projects</a>
+        <a href="../contact/index.html"      class="nav-link btn btn-outline" style="padding:8px 20px;">Connect</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../index.html"             class="nav-mobile-link">Home</a>
+    <a href="../about/index.html"       class="nav-mobile-link">About</a>
+    <a href="../experience/index.html"  class="nav-mobile-link">Experience</a>
+    <a href="../involvement/index.html" class="nav-mobile-link">Involvement</a>
+    <a href="../projects/index.html"    class="nav-mobile-link">Projects</a>
+    <a href="../contact/index.html"     class="nav-mobile-link">Connect</a>
+  </div>
+
+  <main>
+
+    <!-- ════ PAGE HEADER ════ -->
+    <div class="container">
+      <div class="page-header reveal">
+        <span class="label">Work &amp; Builds</span>
+        <h1>Projects<br><em class="italic text-accent">I've shipped.</em></h1>
+        <p class="subtitle">A peer-to-peer campus marketplace, two playable games, and more in progress. Built from scratch — design, code, and concept.</p>
+      </div>
+    </div>
+
+    <!-- ════ FEATURED: CAMPUS COMMONS ════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Featured Project</span>
+          <h2>The main build.</h2>
+        </div>
+
+        <div class="featured-project reveal reveal-delay-1">
+
+          <div class="fp-left">
+            <div class="fp-eyebrow">
+              <span class="fp-status">
+                <span class="fp-status-dot"></span>
+                In Development — MVP Launch 2025
+              </span>
+            </div>
+
+            <h2 class="fp-title">Campus<br>Commons</h2>
+
+            <p class="fp-tagline">A verified peer-to-peer marketplace built exclusively for McGill students. Buy, sell, and exchange within a trusted university network — access restricted to @mail.mcgill.ca addresses.</p>
+
+            <div class="fp-features">
+              <div class="fp-feature">
+                <div class="fp-feature-icon">🔒</div>
+                <span>McGill email verification — @mail.mcgill.ca only</span>
+              </div>
+              <div class="fp-feature">
+                <div class="fp-feature-icon">📍</div>
+                <span>Safe-Swap Zones — designated campus exchange points via Mapbox</span>
+              </div>
+              <div class="fp-feature">
+                <div class="fp-feature-icon">⭐</div>
+                <span>Peer ratings and reputation system</span>
+              </div>
+              <div class="fp-feature">
+                <div class="fp-feature-icon">💬</div>
+                <span>In-app direct messaging between buyers and sellers</span>
+              </div>
+              <div class="fp-feature">
+                <div class="fp-feature-icon">📦</div>
+                <span>4 product categories: Textbooks, Electronics, Housing, Campus Gear</span>
+              </div>
+            </div>
+
+            <div class="fp-stack">
+              <span class="fp-tag">Next.js 14</span>
+              <span class="fp-tag">Tailwind CSS</span>
+              <span class="fp-tag">Supabase</span>
+              <span class="fp-tag">Mapbox</span>
+              <span class="fp-tag">Vercel</span>
+            </div>
+
+            <div class="fp-actions">
+              <span class="btn fp-btn-outline btn-outline" style="cursor:default; opacity:0.5;">Coming Soon</span>
+            </div>
+          </div>
+
+          <div class="fp-right">
+            <div class="fp-detail-block">
+              <div class="fp-detail-label">Problem</div>
+              <div class="fp-detail-value">McGill students have no trusted, campus-native marketplace. Facebook groups are unverified and fragmented. Craigslist has no university context. Students lose hundreds per semester on textbooks they could resell.</div>
+            </div>
+            <div class="fp-detail-block">
+              <div class="fp-detail-label">Solution</div>
+              <div class="fp-detail-value">A verified, peer-to-peer platform accessible only to McGill email holders — combining marketplace functionality with built-in campus safety features and a reputation layer.</div>
+            </div>
+            <div class="fp-detail-block">
+              <div class="fp-detail-label">Stage</div>
+              <div class="fp-detail-value">MVP in active development. Core marketplace functionality, authentication, and Safe-Swap Zone integration underway. Targeting campus launch in 2025.</div>
+            </div>
+            <div class="fp-detail-block">
+              <div class="fp-detail-label">Role</div>
+              <div class="fp-detail-value">Founder — product strategy, UX design (Figma), and full-stack development.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ════ OTHER PROJECTS ════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Game Design</span>
+          <h2>Playable projects.</h2>
+          <p>Two fully shipped browser games, built and designed independently.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- LetterLoft -->
+          <div class="project-card reveal">
+            <div class="proj-type">Game Design · Browser</div>
+            <div class="proj-title">LetterLoft</div>
+            <p class="proj-desc">A cozy arcade tower-stacking and word-spelling game with a lo-fi aesthetic. Stack letter blocks to build towers while spelling words for bonus points. Progressive difficulty, relaxing soundtrack, and pastel visuals designed to feel like a cozy corner of the internet.</p>
+            <div class="proj-stack">
+              <span class="proj-tech">HTML</span>
+              <span class="proj-tech">CSS</span>
+              <span class="proj-tech">JavaScript</span>
+            </div>
+            <a href="https://toasted-sea-salt.github.io/letterloft/" target="_blank" rel="noopener" class="proj-link">
+              Play LetterLoft →
+            </a>
+          </div>
+
+          <!-- CardLanes -->
+          <div class="project-card reveal reveal-delay-1">
+            <div class="proj-type">Game Design · Browser</div>
+            <div class="proj-title">CardLanes</div>
+            <p class="proj-desc">A strategic lane-defense card game where players deploy cards with unique abilities to protect their base. Combines deck-building strategy with real-time decision making. Features both a single-player campaign and local multiplayer modes.</p>
+            <div class="proj-stack">
+              <span class="proj-tech">HTML</span>
+              <span class="proj-tech">CSS</span>
+              <span class="proj-tech">JavaScript</span>
+            </div>
+            <a href="https://card-lanes.netlify.app/" target="_blank" rel="noopener" class="proj-link">
+              Play CardLanes →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Elle Rabley. Built with intent.</span>
+        <div class="footer-links">
+          <a href="mailto:elle.elisha.rabley@gmail.com" class="footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/elisha-elle-rabley-b92aa0346" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../contact/index.html" class="footer-link">Connect</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>
